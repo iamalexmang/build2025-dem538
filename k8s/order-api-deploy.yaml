@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-api
+  template:
+    metadata:
+      labels:
+        app: order-api
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "order-api"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: order-api
+        image: order-api:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80

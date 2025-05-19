@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping-api
+  template:
+    metadata:
+      labels:
+        app: shipping-api
+    spec:
+      containers:
+      - name: shipping-api
+        image: shipping-api:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
